@@ -1,15 +1,23 @@
-version: '3.8'
-
+version: '3.7'
 services:
-
-  postgres:
-    image: postgres:15.3
-    container_name: postgres
+  backend:
+    container_name: orderapi
+    image: 192.168.1.120:5000/order-api:1
+    restart: always
+    networks:
+      - appserver_network
     ports:
-      - "5432:5432"
+      - "8080:8080"
     environment:
-      - POSTGRES_DB=orderdb
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
-    healthcheck:
-      test: "pg_isready -U postgres"
+      - "DENV=prod"
+  frontend:
+    container_name: orderui
+    image: 192.168.1.120:5000/order-ui:1
+    restart: always
+    networks:
+      - appserver_network
+    ports:
+      - "3000:3000"
+networks:
+  appserver_network:
+    external: true

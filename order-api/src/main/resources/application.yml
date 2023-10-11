@@ -5,9 +5,9 @@ spring:
     hibernate:
       ddl-auto: create
   datasource:
-    url: jdbc:postgresql://localhost:5432/orderdb
+    url: jdbc:postgresql://192.168.1.150:5432/homexpnzdb
     username: postgres
-    password: postgres
+    password: 1pass56
 
 app:
   jwt:
@@ -17,7 +17,10 @@ app:
     expiration:
       minutes: 10
   cors:
-    allowed-origins: http://localhost:3000
+    allowed-origins: 
+      - http://localhost:3000
+      - https://hmxp.northvue.xyz
+      - https://hmxpapi.northvue.xyz
 
 logging:
   level:
